@@ -1,0 +1,15 @@
+'use strict';
+
+module.exports = {
+  aws: {
+    accessKeyId: process.env.AMAZON_AWS_ACCESS_KEY || '',
+    secretAccessKey: process.env.AMAZON_AWS_SECRET_ACCESS_KEY || ''
+  },
+  gmail: {
+    user: '',
+    pass: '',
+    from: '',
+    to: '',
+    subject: 'Amazon Amiibo Updates!'
+  }
+};

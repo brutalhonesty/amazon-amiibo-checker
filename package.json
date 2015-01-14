@@ -1,0 +1,32 @@
+{
+  "name": "amazon-amiibo-checker",
+  "version": "0.0.1",
+  "description": "Check for changes in Amiibo availability on Amazon.com",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brutalhonesty/amazon-amiibo-checker.git"
+  },
+  "keywords": [
+    "amiibo",
+    "wave4",
+    "amiibos",
+    "nintendo"
+  ],
+  "author": "Adam Schodde <sparky1010+github@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brutalhonesty/amazon-amiibo-checker/issues"
+  },
+  "homepage": "https://github.com/brutalhonesty/amazon-amiibo-checker",
+  "dependencies": {
+    "aws2": "^0.2.1",
+    "nodemailer": "^1.3.0",
+    "request": "^2.51.0",
+    "xml2json": "^0.5.1"
+  }
+}
