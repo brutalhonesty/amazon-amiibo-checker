@@ -32,10 +32,11 @@ function _email(link) {
       console.log(error);
     }
     console.log(info);
+    clearInterval(checkInterval);
   });
 }
 
-setInterval(function () {
+var checkInterval = setInterval(function () {
   aws2.sign(options, {
     accessKeyId: config.aws.accessKeyId,
     secretAccessKey: config.aws.secretAccessKey
