@@ -56,4 +56,4 @@ setInterval(function () {
       console.log('Nothing new :(');
     }
   });
-}, Math.floor(Math.random() * 5000) + 10000);
+}, Math.floor(Math.random() * 7000) + 20000);
