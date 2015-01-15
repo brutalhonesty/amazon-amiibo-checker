@@ -6,22 +6,22 @@ module.exports = {
     secretAccessKey: process.env.AMAZON_AWS_SECRET_ACCESS_KEY || ''
   },
   gmail: {
-    user: AMAZON_NINTENDO_CHECKER_GMAIL_USER || '',
-    pass: AMAZON_NINTENDO_CHECKER_GMAIL_PASS || ''
-  }
+    user: process.env.AMAZON_NINTENDO_CHECKER_GMAIL_USER || '',
+    pass: process.env.AMAZON_NINTENDO_CHECKER_GMAIL_PASS || ''
+  },
   amiibo: {
-    from: AMAZON_NINTENDO_CHECKER_AMIIBO_FROM || '',
-    to: AMAZON_NINTENDO_CHECKER_AMIIBO_TO || '',
+    from: process.env.AMAZON_NINTENDO_CHECKER_AMIIBO_FROM || '',
+    to: process.env.AMAZON_NINTENDO_CHECKER_AMIIBO_TO || '',
     subject: 'Amazon Amiibo Updates!'
   },
   skullkid: {
-    from: AMAZON_NINTENDO_CHECKER_SKULLKID_FROM || '',
-    to: AMAZON_NINTENDO_CHECKER_SKULLKID_TO || '',
+    from: process.env.AMAZON_NINTENDO_CHECKER_SKULLKID_FROM || '',
+    to: process.env.AMAZON_NINTENDO_CHECKER_SKULLKID_TO || '',
     subject: 'Amazon Skullkid Updates!'
   },
   threeDS: {
-    from: AMAZON_NINTENDO_CHECKER_THREEDS_FROM || '',
-    to: AMAZON_NINTENDO_CHECKER_THREEDS_TO || '',
+    from: process.env.AMAZON_NINTENDO_CHECKER_THREEDS_FROM || '',
+    to: process.env.AMAZON_NINTENDO_CHECKER_THREEDS_TO || '',
     subject: 'Amazon New 3DS XL Legend of Zelda: Majora\'s Mask Limited Edition Updates!'
   }
 };
