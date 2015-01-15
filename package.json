@@ -1,7 +1,7 @@
 {
-  "name": "amazon-amiibo-checker",
+  "name": "amazon-nintendo-checker",
   "version": "0.0.1",
-  "description": "Check for changes in Amiibo availability on Amazon.com",
+  "description": "Check for changes in Nintendo product availability on Amazon.com",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/brutalhonesty/amazon-amiibo-checker.git"
+    "url": "https://github.com/brutalhonesty/amazon-nintendo-checker.git"
   },
   "keywords": [
     "amiibo",
@@ -20,9 +20,9 @@
   "author": "Adam Schodde <sparky1010+github@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/brutalhonesty/amazon-amiibo-checker/issues"
+    "url": "https://github.com/brutalhonesty/amazon-nintendo-checker/issues"
   },
-  "homepage": "https://github.com/brutalhonesty/amazon-amiibo-checker",
+  "homepage": "https://github.com/brutalhonesty/amazon-nintendo-checker",
   "dependencies": {
     "aws2": "^0.2.1",
     "nodemailer": "^1.3.0",
