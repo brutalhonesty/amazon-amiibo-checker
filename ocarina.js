@@ -49,7 +49,6 @@ var checkInterval = setInterval(function () {
       console.log(body);
     }
     body = parser.toJson(body);
-    console.log(body);
     body = JSON.parse(body);
     var ocarinaOffers = body['ItemLookupResponse']['Items']['Item']['Offers']['TotalOffers'];
     if(ocarinaOffers > 0) {
