@@ -19,6 +19,11 @@ module.exports = {
     to: process.env.AMAZON_NINTENDO_CHECKER_SKULLKID_TO || '',
     subject: 'Amazon Skullkid Updates!'
   },
+  ocarina: {
+    from: process.env.AMAZON_NINTENDO_CHECKER_OCARINA_FROM || '',
+    to: process.env.AMAZON_NINTENDO_CHECKER_OCARINA_TO || '',
+    subject: 'Amazon Orcaina of Time Updates!'
+  },
   threeDS: {
     from: process.env.AMAZON_NINTENDO_CHECKER_THREEDS_FROM || '',
     to: process.env.AMAZON_NINTENDO_CHECKER_THREEDS_TO || '',
