@@ -29,12 +29,8 @@ function _createBody(amiiboList, callback) {
   var $ = cheerio.load('<table></table>');
   $('table').append('<tr><th>Name</th><th>ASIN</th><th>Type</th><th>EAN</th><th>UPC</th><th>Amazon Offer?</th><th>Merchant</th><th>Offer Type</th><th>Link</th></tr>');
   for(var i = 0; i < amiiboList.length; i++) {
-    console.log(amiiboList[i].hasAmazonOffer);
-    console.log(amiiboList[i].merchant);
     amiiboList[i].hasAmazonOffer = amiiboList[i].hasAmazonOffer ? ('<b>' + amiiboList[i].hasAmazonOffer + '</b>') : amiiboList[i].hasAmazonOffer;
     amiiboList[i].merchant = amiiboList[i].hasAmazonOffer ? ('<b>' + amiiboList[i].merchant + '</b>') : amiiboList[i].merchant;
-    console.log(amiiboList[i].hasAmazonOffer);
-    console.log(amiiboList[i].merchant);
     $('table').append('<tr><td>'+ amiiboList[i].name + '</td><td>' + amiiboList[i].asin + '</td><td>'+ amiiboList[i].type + '</td><td>'+ amiiboList[i].ean + '</td><td>'+ amiiboList[i].upc + '</td><td>'+ amiiboList[i].hasAmazonOffer + '</td><td>' + amiiboList[i].merchant + '</td><td>'+ amiiboList[i].offerType + '</td><td>'+ 'http://www.amazon.com/dp/' + amiiboList[i].asin + '</td></tr>')
   }
   return callback(null, $.html());
