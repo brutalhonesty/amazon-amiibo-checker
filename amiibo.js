@@ -27,9 +27,15 @@ var transporter = nodemailer.createTransport({
 
 function _createBody(amiiboList, callback) {
   var $ = cheerio.load('<table></table>');
-  $('table').append('<tr><th>Name</th><th>ASIN</th><th>Type</th><th>EAN</th><th>UPC</th><th>Amazon Offer?</th><th>Offer Type</th><th>Link</th></tr>');
+  $('table').append('<tr><th>Name</th><th>ASIN</th><th>Type</th><th>EAN</th><th>UPC</th><th>Amazon Offer?</th><th>Merchant</th><th>Offer Type</th><th>Link</th></tr>');
   for(var i = 0; i < amiiboList.length; i++) {
-    $('table').append('<tr><td>'+ amiiboList[i].name + '</td><td>' + amiiboList[i].asin + '</td><td>'+ amiiboList[i].type + '</td><td>'+ amiiboList[i].ean + '</td><td>'+ amiiboList[i].upc + '</td><td>'+ amiiboList[i].hasAmazonOffer + '</td><td>'+ amiiboList[i].offerType + '</td><td>'+ 'http://www.amazon.com/dp/' + amiiboList[i].asin + '</td></tr>')
+    console.log(amiiboList[i].hasAmazonOffer);
+    console.log(amiiboList[i].merchant);
+    amiiboList[i].hasAmazonOffer = amiiboList[i].hasAmazonOffer ? ('<b>' + amiiboList[i].hasAmazonOffer + '</b>') : amiiboList[i].hasAmazonOffer;
+    amiiboList[i].merchant = amiiboList[i].hasAmazonOffer ? ('<b>' + amiiboList[i].merchant + '</b>') : amiiboList[i].merchant;
+    console.log(amiiboList[i].hasAmazonOffer);
+    console.log(amiiboList[i].merchant);
+    $('table').append('<tr><td>'+ amiiboList[i].name + '</td><td>' + amiiboList[i].asin + '</td><td>'+ amiiboList[i].type + '</td><td>'+ amiiboList[i].ean + '</td><td>'+ amiiboList[i].upc + '</td><td>'+ amiiboList[i].hasAmazonOffer + '</td><td>' + amiiboList[i].merchant + '</td><td>'+ amiiboList[i].offerType + '</td><td>'+ 'http://www.amazon.com/dp/' + amiiboList[i].asin + '</td></tr>')
   }
   return callback(null, $.html());
 }
@@ -81,23 +87,22 @@ var checkInterval = setInterval(function () {
         var upc = amiibo['ItemAttributes']['UPC'];
         var hasAmazonOffer = null;
         var offerType = null;
+        var merchant = null;
         if(amiibo['Offers']['Offer'] instanceof Array) {
-          hasAmazonOffer = (amiibo['Offers']['Offer'][0]['Merchant']['Name'] === 'Amazon.com');
-          if(hasAmazonOffer) {
-             if(amiibo['Offers']['Offer'][0]['OfferListing']['AvailabilityAttributes']['IsPreorder']) {
-               offerType = 'PREORDER';
-             } else if(amiibo['Offers']['Offer'][0]['OfferListing']['AvailabilityAttributes']['AvailabilityType'] === 'now' && !amiibo['Offers']['Offer'][0]['OfferListing']['AvailabilityAttributes']['IsPreorder']) {
-               offerType = 'AVAILABLE';
-             }
-           }
-         } else {
-           hasAmazonOffer = (amiibo['Offers']['Offer']['Merchant']['Name'] === 'Amazon.com');
-          if(hasAmazonOffer) {
-            if(amiibo['Offers']['Offer']['OfferListing']['AvailabilityAttributes']['IsPreorder']) {
-              offerType = 'PREORDER';
-            } else if(amiibo['Offers']['Offer']['OfferListing']['AvailabilityAttributes']['AvailabilityType'] === 'now' && !amiibo['Offers']['Offer']['OfferListing']['AvailabilityAttributes']['IsPreorder']) {
-              offerType = 'AVAILABLE';
-            }
+          merchant = amiibo['Offers']['Offer'][0]['Merchant']['Name'];
+          hasAmazonOffer = (merchant === 'Amazon.com');
+          if(amiibo['Offers']['Offer'][0]['OfferListing']['AvailabilityAttributes']['IsPreorder']) {
+            offerType = 'PREORDER';
+          } else if(amiibo['Offers']['Offer'][0]['OfferListing']['AvailabilityAttributes']['AvailabilityType'] === 'now' && !amiibo['Offers']['Offer'][0]['OfferListing']['AvailabilityAttributes']['IsPreorder']) {
+            offerType = 'AVAILABLE';
+          }
+        } else {
+          merchant = amiibo['Offers']['Offer']['Merchant']['Name'];
+           hasAmazonOffer = (merchant === 'Amazon.com');
+          if(amiibo['Offers']['Offer']['OfferListing']['AvailabilityAttributes']['IsPreorder']) {
+            offerType = 'PREORDER';
+          } else if(amiibo['Offers']['Offer']['OfferListing']['AvailabilityAttributes']['AvailabilityType'] === 'now' && !amiibo['Offers']['Offer']['OfferListing']['AvailabilityAttributes']['IsPreorder']) {
+            offerType = 'AVAILABLE';
           }
          }
          amiiboList.push({
@@ -107,7 +112,8 @@ var checkInterval = setInterval(function () {
            ean: ean,
            upc: upc,
            hasAmazonOffer: hasAmazonOffer,
-           offerType: offerType
+           offerType: offerType,
+           merchant: merchant
          });
       };
       if(!recentlySent && recentCount !== amiiboList.length) {
